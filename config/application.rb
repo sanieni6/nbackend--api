@@ -14,7 +14,8 @@ module NbackendApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :patch, :delete, :options]
+        resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head],
+        expose: %w[Authorization Uid]
       end
     end
 
