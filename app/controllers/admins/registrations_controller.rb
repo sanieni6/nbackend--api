@@ -1,5 +1,5 @@
-class Users::RegistrationsController < Devise::RegistrationsController
-    before_action :authenticate_user!, except: %i[create]
+class Admins::RegistrationsController < Devise::RegistrationsController
+    before_action :authenticate_admin!, except: %i[create]
   
     def create
       build_resource(sign_up_params)
@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     private
   
     def sign_up_params
-      params.require(:user).permit(:firstname, :lastname, :age, :email, :password, :password_confirmation)
+      params.require(:admin).permit(:email, :password, :password_confirmation)
     end
   
     def respond_with(resource, _opts = {})
@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def register_success
       render json: {
         message: 'Signed up sucessfully.',
-        user: current_user
+        user: current_admin
       }, status: :ok
     end
   

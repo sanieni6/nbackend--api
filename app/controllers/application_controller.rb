@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    before_action :authenticate_user!
+    before_action :authenticate_admin!
   
     private
   
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
         begin
           decoded_token = JWT.decode(token, Rails.application.credentials.devise[:jwt_secret_key],
                                      veryify_expiration: true)
-          @current_user = User.find(decoded_token[0]['sub'])
+          @current_admin = Admin.find(decoded_token[0]['sub'])
         rescue ActiveRecord::RecordNotFound
           render json: { message: 'User not found' }, status: :not_found
         end
