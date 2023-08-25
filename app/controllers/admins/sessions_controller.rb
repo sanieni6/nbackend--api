@@ -34,7 +34,7 @@ class Admins::SessionsController < Devise::SessionsController
       else
         render json: {
           message: 'You are logged in.',
-          user: current_admin
+          admin: current_admin
         }, status: :ok
       end
     end

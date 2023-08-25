@@ -11,8 +11,6 @@ namespace :import do
                 lastname: user['lastName'],
                 age: user['age'],
                 email: user['email'],
-                password: user['password'],
-                password_confirmation: user['password'],
                 image: user['image']
             }
             User.create(filtered_data)
